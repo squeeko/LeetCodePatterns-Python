@@ -1,0 +1,21 @@
+def find_max_subarrays (K, arr):
+    result = [] # stores the final result
+    windowSum = 0.0 # starting sum
+    windowStart = 0 # starting arr index
+
+    for windowEnd in range(len(arr)):
+        windowSum += arr[windowEnd] # adds the next elements and puts in the WindowSum
+        # slide the window, we don't need to slide if we've not hit the required window size of 'k'
+        if windowEnd >= K - 1:
+            result.append(windowSum) # This does the summing of the K length window
+            windowSum -= arr[windowStart] # subtracts from the front of the array
+            windowStart += 1 # Now windowStart begins at the next element from 0, then 1, then 2 etc.
+            print(result)
+    return max(result)
+    
+
+def main():
+    result = find_max_subarrays(3, [2, 1, 5, 1, 3, 2])
+    print("sums of subarrays of size K: " + str(result))
+
+main()
